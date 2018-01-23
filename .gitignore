@@ -1,4 +1,5 @@
 # Logs
+# package-lock.js
 logs
 *.log
 npm-debug.log*
@@ -57,3 +58,4 @@ typings/
 # dotenv environment variables file
 .env
 
+package-lock.json
