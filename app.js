@@ -27,7 +27,7 @@ var _token;
 //             break
 //     }
 // })
-app.use( (ctx,next) => {
+app.use((ctx, next) => {
     switch (ctx.path) {
         case '/encode':
             return otp.encode(function (ctx, next) {
