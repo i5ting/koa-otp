@@ -27,12 +27,12 @@ app.use((ctx, next) => {
                     valid: ctx.otp_valid
                 }
             })(ctx, next)
-        case '/decode':
+        case '/verify':
             return compose([otp.encode(function (ctx, next) {
                 _token = ctx.otp_token
                 return next()
             }),
-            otp.decode(_token, function (ctx, next) {
+            otp.verify(_token, function (ctx, next) {
                 ctx.body = {
                     token: ctx.otp_token,
                     valid: ctx.otp_valid

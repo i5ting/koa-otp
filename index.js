@@ -2,6 +2,7 @@ var notp = require('notp');
 
 var opt = {
     window: 0,
+    time: 30
 };
 
 var app = {
@@ -9,7 +10,7 @@ var app = {
         // make sure we can not pass in opt
         return notp.totp.gen(key, opt);
     },
-    decode: function (key, token) {
+    verify: function (key, token) {
         var login = notp.totp.verify(token, key, opt);
         // invalid token if login is null
         if (!login) {
@@ -36,9 +37,9 @@ module.exports = function (key) {
                 }
             }
         },
-        decode: function (token, cb) {
+        verify: function (token, cb) {
             return function (ctx, next) {
-                ctx.otp_valid = app.decode(key, token)
+                ctx.otp_valid = app.verify(key, token)
                 if (cb) {
                     cb(ctx, next)
                 } else {
